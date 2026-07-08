@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Users, Wifi, LogOut, X } from 'lucide-react';
+import { Home, Users, ClipboardList, LogOut, X } from 'lucide-react'; // Ganti Wifi dengan ClipboardList
 import { useNavigate } from 'react-router-dom';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
@@ -8,7 +8,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   const menuItems = [
     { name: 'Dashboard', icon: <Home size={20} />, path: '/dashboard' },
     { name: 'User Management', icon: <Users size={20} />, path: '/users' },
-    { name: 'WiFi Status', icon: <Wifi size={20} />, path: '/wifi' },
+    // Menu baru: Riwayat Transaksi
+    { name: 'Riwayat Transaksi', icon: <ClipboardList size={20} />, path: '/transactions' },
   ];
 
   return (
@@ -40,8 +41,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <button
               key={index}
               onClick={() => {
-                navigate(item.path); // 1. Pindah Halaman
-                toggleSidebar();     // 2. Tutup Sidebar (Otomatis)
+                navigate(item.path);
+                toggleSidebar();
               }}
               className="flex w-full items-center rounded-lg px-4 py-3 text-gray-700 transition-colors hover:bg-blue-50 hover:text-blue-600"
             >

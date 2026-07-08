@@ -2,16 +2,15 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import UserManagement from './pages/UserManagement';
-import Layout from './components/Layout'; // Import Layout
+import TransactionHistory from './pages/TransactionHistory'; // Import Halaman Baru
+import Layout from './components/Layout';
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Route Login (Tanpa Layout/Sidebar) */}
         <Route path="/" element={<Login />} />
         
-        {/* Route Dashboard (Pakai Layout) */}
         <Route 
           path="/dashboard" 
           element={
@@ -21,12 +20,21 @@ function App() {
           } 
         />
 
-        {/* Route User Management (Pakai Layout) */}
         <Route 
           path="/users" 
           element={
             <Layout>
               <UserManagement />
+            </Layout>
+          } 
+        />
+
+        {/* Route Baru untuk Transaksi */}
+        <Route 
+          path="/transactions" 
+          element={
+            <Layout>
+              <TransactionHistory />
             </Layout>
           } 
         />
