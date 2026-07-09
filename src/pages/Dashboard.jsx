@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { 
   AreaChart, 
   Area, 
@@ -11,14 +12,15 @@ import {
 import { ArrowUpRight, ArrowDownRight, Users, Wifi, Wallet } from 'lucide-react';
 
 function Dashboard() {
-  
-  // 1. Data Dummy untuk Grafik (Pendapatan Mingguan)
+  const navigate = useNavigate(); // Hook untuk pindah halaman
+
+  // 1. Data Dummy untuk Grafik
   const chartData = [
     { name: 'Sen', total: 45000 },
     { name: 'Sel', total: 30000 },
     { name: 'Rab', total: 60000 },
     { name: 'Kam', total: 55000 },
-    { name: 'Jum', total: 80000 }, // Puncak keramaian (misal malam minggu)
+    { name: 'Jum', total: 80000 },
     { name: 'Sab', total: 95000 },
     { name: 'Min', total: 70000 },
   ];
@@ -37,15 +39,15 @@ function Dashboard() {
   return (
     <div className="space-y-6">
       
-      {/* --- HEADER --- */}
+      {/* Header */}
       <div>
         <h2 className="text-2xl font-bold text-gray-800">Dashboard Overview</h2>
         <p className="text-sm text-gray-500">Pantau performa bisnis WiFi Anda hari ini.</p>
       </div>
 
-      {/* --- KARTU STATISTIK (Cards) --- */}
+      {/* Cards Statistik */}
       <div className="grid gap-6 md:grid-cols-3">
-        {/* Card 1: User Aktif */}
+        {/* Card 1 */}
         <div className="rounded-xl bg-white p-6 shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
@@ -62,7 +64,7 @@ function Dashboard() {
           </div>
         </div>
 
-        {/* Card 2: Pendapatan Hari Ini */}
+        {/* Card 2 */}
         <div className="rounded-xl bg-white p-6 shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
@@ -79,7 +81,7 @@ function Dashboard() {
           </div>
         </div>
 
-        {/* Card 3: Voucher Terjual */}
+        {/* Card 3 */}
         <div className="rounded-xl bg-white p-6 shadow-sm border border-gray-100">
           <div className="flex items-center justify-between">
             <div>
@@ -97,10 +99,10 @@ function Dashboard() {
         </div>
       </div>
 
-      {/* --- AREA GRAFIK & TRANSAKSI --- */}
+      {/* Area Grafik & Tabel */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         
-        {/* Kolom Kiri: GRAFIK (Lebar 2/3 layar di desktop) */}
+        {/* GRAFIK */}
         <div className="rounded-xl bg-white p-6 shadow-sm lg:col-span-2">
           <h3 className="mb-4 text-lg font-bold text-gray-800">Tren Pendapatan (7 Hari)</h3>
           <div className="h-64 w-full">
@@ -132,7 +134,7 @@ function Dashboard() {
           </div>
         </div>
 
-        {/* Kolom Kanan: TRANSAKSI TERBARU (Lebar 1/3 layar) */}
+        {/* TRANSAKSI MINI */}
         <div className="rounded-xl bg-white p-6 shadow-sm">
           <h3 className="mb-4 text-lg font-bold text-gray-800">Transaksi Terbaru</h3>
           <div className="space-y-4">
@@ -150,7 +152,10 @@ function Dashboard() {
               </div>
             ))}
           </div>
-          <button className="mt-4 w-full rounded-lg border border-gray-200 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50">
+          <button 
+            onClick={() => navigate('/transactions')} // LINK KE HALAMAN TRANSAKSI
+            className="mt-4 w-full rounded-lg border border-gray-200 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50"
+          >
             Lihat Semua Transaksi
           </button>
         </div>
